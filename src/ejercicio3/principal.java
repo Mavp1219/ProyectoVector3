@@ -363,10 +363,8 @@ public class principal extends javax.swing.JFrame {
             txtlongitud.requestFocusInWindow();
             txtlongitud.selectAll();
         } else {
-            int longitud, longitud2, opc;
+            int opc;
             double vsuma = 0, vresta = 0;
-            longitud = Integer.parseInt(txtlongitud.getText());
-            longitud2 = Integer.parseInt(txtlongitud2.getText());
             opc = cmboperaciones.getSelectedIndex();
 
             switch (opc) {
