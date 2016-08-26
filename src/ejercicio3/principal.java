@@ -272,14 +272,14 @@ public class principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite la longuitud", "Error", JOptionPane.ERROR_MESSAGE);
             txtlongitud2.requestFocusInWindow();
         } else if (Integer.parseInt(txtlongitud2.getText().trim()) == 0) {
-            JOptionPane.showMessageDialog(this, "La longitud debe ser mayor que cero", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La longitud del vector debe ser mayor que 0", "Error", JOptionPane.ERROR_MESSAGE);
             txtlongitud2.requestFocusInWindow();
             txtlongitud2.selectAll();
         } else {
             int longitud2;
             longitud2 = Integer.parseInt(txtlongitud2.getText());
             v1 = new double[longitud2];
-            JOptionPane.showMessageDialog(this, "Vector creado correctamente!");
+            JOptionPane.showMessageDialog(this, "Vector creado correctamente");
 
             cmdllenadoautomatico2.setEnabled(true);
             txtlongitud2.setEditable(true);
@@ -311,7 +311,7 @@ public class principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite la longuitud", "Error", JOptionPane.ERROR_MESSAGE);
             txtlongitud.requestFocusInWindow();
         } else if (Integer.parseInt(txtlongitud.getText().trim()) == 0) {
-            JOptionPane.showMessageDialog(this, "La longitud debe ser mayor que cero", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La longitud no puede ser 0, ingrese una mayor", "Error", JOptionPane.ERROR_MESSAGE);
             txtlongitud.requestFocusInWindow();
             txtlongitud.selectAll();
         } else {
@@ -330,7 +330,7 @@ public class principal extends javax.swing.JFrame {
     private void cmdllenadomanualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdllenadomanualActionPerformed
         double n;
         for (int i = 0; i < v.length; i++) {
-            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento en la posición: " + i));
+            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento " + (i+1)));
             v[i] = n;
         }
         cmdllenadomanual.setEnabled(false);
@@ -347,7 +347,7 @@ public class principal extends javax.swing.JFrame {
     private void cmdllenadomanual2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdllenadomanual2ActionPerformed
         double n;
         for (int i = 0; i < v1.length; i++) {
-            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el valor en la posicion " + (i + 1)));
+            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento" + (i + 1)));
             v1[i] = n;
         }
         cmdllenadoautomatico2.setEnabled(false);
@@ -361,8 +361,7 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdllenadomanual2ActionPerformed
 
     private void cmdllenadoautomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdllenadoautomaticoActionPerformed
-
-        int n;
+         double n;
         for (int i = 0; i < v.length; i++) {
             n = (int) (Math.random() * 25 + 1);
             v[i] = n;
@@ -373,24 +372,23 @@ public class principal extends javax.swing.JFrame {
         for (int i = 0; i < v.length; i++) {
             txtresultadov1.append(v[i] + "\n");
         }
-        JOptionPane.showMessageDialog(this, "Vector creado correctamente");
         txtlongitud2.setEditable(true);
         cmdcrear2.setEnabled(true);
         txtlongitud2.requestFocusInWindow();
     }//GEN-LAST:event_cmdllenadoautomaticoActionPerformed
 
     private void cmdllenadoautomatico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdllenadoautomatico2ActionPerformed
-        int n;
-        for (int i = 0; i < v.length; i++) {
+       double n;
+        for (int i = 0; i < v1.length; i++) {
             n = (int) (Math.random() * 25 + 1);
-            v[i] = n;
-        }cmdllenadomanual2.setEnabled(false);
+            v1[i] = n;
+        }
+        cmdllenadomanual2.setEnabled(false);
         cmdllenadoautomatico2.setEnabled(false);
         cmdborrar2.setEnabled(true);
-        for (int i = 0; i < v.length; i++) {
-            txtresultadov2.append(v[i] + "\n");
+        for (int i = 0; i < v1.length; i++) {
+            txtresultadov2.append(v1[i] + "\n");
         }
-        JOptionPane.showMessageDialog(this, "Vector creado correctamente");
         cmdcalcular.setEnabled(true);
         cmdborrar3.setEnabled(true);
     }//GEN-LAST:event_cmdllenadoautomatico2ActionPerformed
@@ -422,30 +420,32 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdborrar2ActionPerformed
 
     private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
-        if (v == null) {
-            JOptionPane.showMessageDialog(this, "El vector 1 esta vacio, porfavor llenelo", "Error", JOptionPane.ERROR_MESSAGE);
-            txtlongitud.requestFocusInWindow();
+        if (v == null ) {
+            JOptionPane.showMessageDialog(this, "El vector 1 esta vacio llenelo", "ERROR", JOptionPane.ERROR_MESSAGE);
             txtlongitud.setText("");
-        } else if (v1 == null) {
-            JOptionPane.showMessageDialog(this, "EL vector 2 esta vacio, por favor llenelo", "Error", JOptionPane.ERROR_MESSAGE);
+            txtlongitud.requestFocusInWindow();
+        }
+        else if (v1 == null) {
+            JOptionPane.showMessageDialog(this, " El vector 2 esta vacio llenelo", "ERROR", JOptionPane.ERROR_MESSAGE);
             txtlongitud2.setText("");
             txtlongitud2.requestFocusInWindow();
-        } else if (Integer.parseInt(txtlongitud.getText()) != Integer.parseInt(txtlongitud2.getText())) {
-            JOptionPane.showMessageDialog(this, "Los vectores deben coinsidir", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
+        }
+        else if (Integer.parseInt(txtlongitud.getText()) != Integer.parseInt(txtlongitud2.getText())) {
+            JOptionPane.showMessageDialog(this, "Los vectores deben coincidir", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
             int longitud;
             longitud = Integer.parseInt(txtlongitud.getText());
             vsuma = new double[longitud];
             vresta = new double[longitud];
             for (int i = 0; i < v.length; i++) {
                 vsuma[i] = v[i] + v1[i];
-                txtresultadosuma.append(v[i] + " + " + v1[i] + " = " + vsuma[i] + "\n");
+                txtresultadosuma.append(v[i]+ " + " +v1[i]+" = "+vsuma[i]+"\n");
             }
             for (int i = 0; i < v.length; i++) {
                 vresta[i] = v[i] - v1[i];
-                txtresultadoresta.append(v[i] + " - " + v1[i] + " = " + vresta[i] + "\n");
+                txtresultadoresta.append(v[i]+ " - " +v1[i]+" = "+vresta[i]+"\n");
             }
-
         }
     }//GEN-LAST:event_cmdcalcularActionPerformed
 
