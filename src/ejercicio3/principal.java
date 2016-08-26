@@ -81,13 +81,14 @@ public class principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("SUMA Y RESTA DE DOS VECTORES");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 230, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 230, 50));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Iniciales Vector 1"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Longitud:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 26, 100, 30));
 
@@ -108,6 +109,7 @@ public class principal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Iniciales Vector 2"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Longitud: ");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 34, 70, 20));
 
@@ -438,13 +440,13 @@ public class principal extends javax.swing.JFrame {
             longitud = Integer.parseInt(txtlongitud.getText());
             vsuma = new double[longitud];
             vresta = new double[longitud];
-            for (int i = 0; i < v.length; i++) {
-                vsuma[i] = v[i] + v1[i];
-                txtresultadosuma.append(v[i]+ " + " +v1[i]+" = "+vsuma[i]+"\n");
+            for (int i=0;i<v.length;i++) {
+                vsuma[i]=v[i]+v1[i];
+                txtresultadosuma.append(v[i]+"+"+v1[i]+"="+vsuma[i]+"\n");
             }
-            for (int i = 0; i < v.length; i++) {
-                vresta[i] = v[i] - v1[i];
-                txtresultadoresta.append(v[i]+ " - " +v1[i]+" = "+vresta[i]+"\n");
+            for (int i=0;i<v.length;i++) {
+                vresta[i]=v[i]-v1[i];
+                txtresultadoresta.append(v[i]+"-"+v1[i]+"="+vresta[i]+"\n");
             }
         }
     }//GEN-LAST:event_cmdcalcularActionPerformed
