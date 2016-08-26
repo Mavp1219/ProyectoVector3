@@ -18,19 +18,22 @@ public class principal extends javax.swing.JFrame {
      */
     double v[];
     double v1[];
+    double vsuma[];
+    double vresta[];
 
     public principal() {
         initComponents();
-        cmdcalcular.setEnabled(false);
+        txtlongitud2.setEditable(false);
+        cmdcrear2.setEnabled(false);
         cmdllenadoautomatico.setEnabled(false);
-        cmdllenadomanual.setEnabled(false);
-        cmdborrar.setEnabled(false);
         cmdllenadoautomatico2.setEnabled(false);
+        cmdllenadomanual.setEnabled(false);
         cmdllenadomanual2.setEnabled(false);
+        cmdborrar.setEnabled(false);
         cmdborrar2.setEnabled(false);
+        cmdcalcular.setEnabled(false);
         cmdborrar3.setEnabled(false);
-        cmdcrear2.setEnabled(true);
-
+        txtlongitud.requestFocusInWindow();
     }
 
     /**
@@ -60,7 +63,6 @@ public class principal extends javax.swing.JFrame {
         cmdllenadoautomatico2 = new javax.swing.JButton();
         cmdborrar2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        cmboperaciones = new javax.swing.JComboBox<>();
         cmdcalcular = new javax.swing.JButton();
         cmdborrar3 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -71,7 +73,10 @@ public class principal extends javax.swing.JFrame {
         txtresultadov2 = new javax.swing.JTextArea();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        txtresultado = new javax.swing.JTextArea();
+        txtresultadosuma = new javax.swing.JTextArea();
+        jPanel9 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtresultadoresta = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -192,16 +197,13 @@ public class principal extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Operaciones con Vectores"));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cmboperaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suma", "Resta" }));
-        jPanel5.add(cmboperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 120, 30));
-
         cmdcalcular.setText("Calcular");
         cmdcalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdcalcularActionPerformed(evt);
             }
         });
-        jPanel5.add(cmdcalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 30));
+        jPanel5.add(cmdcalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 130, 30));
 
         cmdborrar3.setText("Borrar");
         cmdborrar3.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +211,7 @@ public class principal extends javax.swing.JFrame {
                 cmdborrar3ActionPerformed(evt);
             }
         });
-        jPanel5.add(cmdborrar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 130, 30));
+        jPanel5.add(cmdborrar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 130, 30));
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 180, 140));
 
@@ -238,13 +240,24 @@ public class principal extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado Operaciones"));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtresultado.setColumns(20);
-        txtresultado.setRows(5);
-        jScrollPane3.setViewportView(txtresultado);
+        txtresultadosuma.setColumns(20);
+        txtresultadosuma.setRows(5);
+        jScrollPane3.setViewportView(txtresultadosuma);
 
-        jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 16, 210, 90));
+        jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 16, 140, 90));
 
-        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 250, 120));
+        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 180, 120));
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado de operaciones 2"));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtresultadoresta.setColumns(20);
+        txtresultadoresta.setRows(5);
+        jScrollPane4.setViewportView(txtresultadoresta);
+
+        jPanel9.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 160, 80));
+
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 180, 110));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -254,7 +267,7 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtlongitudActionPerformed
 
     private void cmdcrear2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcrear2ActionPerformed
-        int longitud2;
+
         if (txtlongitud2.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Digite la longuitud", "Error", JOptionPane.ERROR_MESSAGE);
             txtlongitud2.requestFocusInWindow();
@@ -263,19 +276,17 @@ public class principal extends javax.swing.JFrame {
             txtlongitud2.requestFocusInWindow();
             txtlongitud2.selectAll();
         } else {
+            int longitud2;
             longitud2 = Integer.parseInt(txtlongitud2.getText());
             v1 = new double[longitud2];
             JOptionPane.showMessageDialog(this, "Vector creado correctamente!");
-        }
 
-            cmdcrear.setEnabled(false);
-            cmdllenadomanual.setEnabled(false);
-            cmdllenadoautomatico.setEnabled(false);
-            cmdcalcular.setEnabled(false);
-            cmdborrar.setEnabled(false);
-            cmdcrear2.setEnabled(false);
             cmdllenadoautomatico2.setEnabled(true);
+            txtlongitud2.setEditable(true);
             cmdllenadomanual2.setEnabled(true);
+            cmdborrar2.setEnabled(true);
+            cmdcrear2.setEnabled(false);
+        }
     }//GEN-LAST:event_cmdcrear2ActionPerformed
 
     private void txtlongitudKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtlongitudKeyTyped
@@ -295,7 +306,7 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtlongitud2KeyTyped
 
     private void cmdcrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcrearActionPerformed
-        int longitud;
+
         if (txtlongitud.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Digite la longuitud", "Error", JOptionPane.ERROR_MESSAGE);
             txtlongitud.requestFocusInWindow();
@@ -304,20 +315,15 @@ public class principal extends javax.swing.JFrame {
             txtlongitud.requestFocusInWindow();
             txtlongitud.selectAll();
         } else {
+            int longitud;
             longitud = Integer.parseInt(txtlongitud.getText());
             v = new double[longitud];
             JOptionPane.showMessageDialog(this, "Vector creado correctamente!");
-
-            cmdcrear.setEnabled(false);
-            cmdllenadomanual.setEnabled(true);
+            txtlongitud.setEditable(false);
             cmdllenadoautomatico.setEnabled(true);
-            cmdcalcular.setEnabled(false);
-            cmdborrar.setEnabled(false);
-            cmdcrear2.setEnabled(true);
-            cmdllenadoautomatico2.setEnabled(false);
-            cmdllenadomanual2.setEnabled(false);
-            txtlongitud.setEnabled(false);
-
+            cmdllenadomanual.setEnabled(true);
+            cmdborrar.setEnabled(true);
+            cmdcrear.setEnabled(false);
         }
     }//GEN-LAST:event_cmdcrearActionPerformed
 
@@ -327,28 +333,31 @@ public class principal extends javax.swing.JFrame {
             n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento en la posición: " + i));
             v[i] = n;
         }
+        cmdllenadomanual.setEnabled(false);
+        cmdllenadoautomatico.setEnabled(false);
+        cmdborrar.setEnabled(true);
         for (int i = 0; i < v.length; i++) {
             txtresultadov1.append(v[i] + "\n");
         }
-        cmdcrear.setEnabled(false);
-        cmdllenadomanual.setEnabled(false);
-        cmdllenadoautomatico.setEnabled(false);
-        cmdcalcular.setEnabled(false);
-        cmdborrar.setEnabled(true);
+        txtlongitud2.setEditable(true);
         cmdcrear2.setEnabled(true);
-        cmdllenadomanual2.setEnabled(false);
-        cmdllenadoautomatico2.setEnabled(false);
+        txtlongitud2.requestFocusInWindow();
     }//GEN-LAST:event_cmdllenadomanualActionPerformed
 
     private void cmdllenadomanual2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdllenadomanual2ActionPerformed
         double n;
-        for (int i = 0; i < v.length; i++) {
-            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento en la posición: " + i));
-            v[i] = n;
+        for (int i = 0; i < v1.length; i++) {
+            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el valor en la posicion " + (i + 1)));
+            v1[i] = n;
         }
+        cmdllenadoautomatico2.setEnabled(false);
+        cmdllenadomanual2.setEnabled(false);
+        cmdborrar2.setEnabled(true);
         for (int i = 0; i < v.length; i++) {
-            txtresultadov1.append(v1[i] + "\n");
+            txtresultadov2.append(v1[i] + "\n");
         }
+        cmdcalcular.setEnabled(true);
+        cmdborrar3.setEnabled(true);
     }//GEN-LAST:event_cmdllenadomanual2ActionPerformed
 
     private void cmdllenadoautomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdllenadoautomaticoActionPerformed
@@ -358,19 +367,16 @@ public class principal extends javax.swing.JFrame {
             n = (int) (Math.random() * 25 + 1);
             v[i] = n;
         }
+        cmdllenadomanual.setEnabled(false);
+        cmdllenadoautomatico.setEnabled(false);
+        cmdborrar.setEnabled(true);
         for (int i = 0; i < v.length; i++) {
             txtresultadov1.append(v[i] + "\n");
         }
         JOptionPane.showMessageDialog(this, "Vector creado correctamente");
-        
-        cmdcrear.setEnabled(false);
-        cmdllenadomanual.setEnabled(false);
-        cmdllenadoautomatico.setEnabled(false);
-        cmdcalcular.setEnabled(false);
-        cmdborrar.setEnabled(true);
+        txtlongitud2.setEditable(true);
         cmdcrear2.setEnabled(true);
-        cmdllenadomanual2.setEnabled(false);
-        cmdllenadoautomatico2.setEnabled(false);
+        txtlongitud2.requestFocusInWindow();
     }//GEN-LAST:event_cmdllenadoautomaticoActionPerformed
 
     private void cmdllenadoautomatico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdllenadoautomatico2ActionPerformed
@@ -378,11 +384,15 @@ public class principal extends javax.swing.JFrame {
         for (int i = 0; i < v.length; i++) {
             n = (int) (Math.random() * 25 + 1);
             v[i] = n;
-        }
+        }cmdllenadomanual2.setEnabled(false);
+        cmdllenadoautomatico2.setEnabled(false);
+        cmdborrar2.setEnabled(true);
         for (int i = 0; i < v.length; i++) {
             txtresultadov2.append(v[i] + "\n");
         }
         JOptionPane.showMessageDialog(this, "Vector creado correctamente");
+        cmdcalcular.setEnabled(true);
+        cmdborrar3.setEnabled(true);
     }//GEN-LAST:event_cmdllenadoautomatico2ActionPerformed
 
     private void cmdborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdborrarActionPerformed
@@ -390,60 +400,77 @@ public class principal extends javax.swing.JFrame {
         txtlongitud.setText("");
         txtlongitud.requestFocusInWindow();
         v = null;
-        txtlongitud.setEnabled(true);
+        txtlongitud.setEditable(true);
+        cmdcrear.setEnabled(true);
+        cmdllenadoautomatico.setEnabled(false);
+        cmdllenadomanual.setEnabled(false);
+        cmdborrar.setEnabled(false);
+        cmdcalcular.setEnabled(false);
     }//GEN-LAST:event_cmdborrarActionPerformed
 
     private void cmdborrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdborrar2ActionPerformed
         txtresultadov2.setText("");
-        txtlongitud.setText("");
-        txtlongitud.requestFocusInWindow();
+        txtlongitud2.setText("");
+        txtlongitud2.requestFocusInWindow();
+        txtlongitud2.setEditable(true);
         v1 = null;
+        cmdcrear2.setEnabled(true);
+        cmdllenadoautomatico2.setEnabled(false);
+        cmdllenadomanual2.setEnabled(false);
+        cmdcalcular.setEnabled(false);
+        cmdborrar2.setEnabled(false);
     }//GEN-LAST:event_cmdborrar2ActionPerformed
 
     private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
-        if (txtlongitud.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Digite la longitud del vector", "Error", JOptionPane.ERROR_MESSAGE);
+        if (v == null) {
+            JOptionPane.showMessageDialog(this, "El vector 1 esta vacio, porfavor llenelo", "Error", JOptionPane.ERROR_MESSAGE);
             txtlongitud.requestFocusInWindow();
-        } else if (Integer.parseInt(txtlongitud.getText().trim()) == 0) {
-            JOptionPane.showMessageDialog(this, "La longitud debe ser mayor que cero", "Error", JOptionPane.ERROR_MESSAGE);
-            txtlongitud.requestFocusInWindow();
-            txtlongitud.selectAll();
+            txtlongitud.setText("");
+        } else if (v1 == null) {
+            JOptionPane.showMessageDialog(this, "EL vector 2 esta vacio, por favor llenelo", "Error", JOptionPane.ERROR_MESSAGE);
+            txtlongitud2.setText("");
+            txtlongitud2.requestFocusInWindow();
+        } else if (Integer.parseInt(txtlongitud.getText()) != Integer.parseInt(txtlongitud2.getText())) {
+            JOptionPane.showMessageDialog(this, "Los vectores deben coinsidir", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            int opc;
-            double vsuma = 0, vresta = 0;
-            opc = cmboperaciones.getSelectedIndex();
-
-            switch (opc) {
-
-                case 0:
-                    for (int i = 0; i < v.length; i++) {
-                        vsuma = v[i] + v1[i];
-                        txtresultado.setText("la suma es de: " + vsuma);
-                    }
-                    break;
-
-                case 1:
-                    for (int i = 0; i < v.length; i++) {
-                        vresta = v[1] - v1[i];
-                        txtresultado.setText("La resta es de: " + vresta);
-                    }
-
-                    break;
+            int longitud;
+            longitud = Integer.parseInt(txtlongitud.getText());
+            vsuma = new double[longitud];
+            vresta = new double[longitud];
+            for (int i = 0; i < v.length; i++) {
+                vsuma[i] = v[i] + v1[i];
+                txtresultadosuma.append(v[i] + " + " + v1[i] + " = " + vsuma[i] + "\n");
+            }
+            for (int i = 0; i < v.length; i++) {
+                vresta[i] = v[i] - v1[i];
+                txtresultadoresta.append(v[i] + " - " + v1[i] + " = " + vresta[i] + "\n");
             }
 
         }
-
-
     }//GEN-LAST:event_cmdcalcularActionPerformed
 
     private void cmdborrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdborrar3ActionPerformed
-        txtresultado.setText("");
+        v = null;
+        v1 = null;
+        vsuma = null;
+        vresta = null;
         txtlongitud.setText("");
         txtlongitud2.setText("");
+        txtresultadoresta.setText("");
+        txtresultadosuma.setText("");
         txtresultadov1.setText("");
         txtresultadov2.setText("");
+        cmdcalcular.setEnabled(false);
+        cmdllenadomanual.setEnabled(false);
+        cmdllenadoautomatico.setEnabled(false);
+        cmdborrar.setEnabled(false);
+        txtlongitud2.setEditable(false);
+        cmdcrear2.setEnabled(false);
+        cmdllenadomanual2.setEnabled(false);
+        cmdllenadoautomatico2.setEnabled(false);
+        cmdborrar2.setEnabled(false);
         txtlongitud.requestFocusInWindow();
-        v = null;
+        txtlongitud.setEditable(true);
     }//GEN-LAST:event_cmdborrar3ActionPerformed
 
     /**
@@ -482,7 +509,6 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmboperaciones;
     private javax.swing.JButton cmdborrar;
     private javax.swing.JButton cmdborrar2;
     private javax.swing.JButton cmdborrar3;
@@ -504,12 +530,15 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField txtlongitud;
     private javax.swing.JTextField txtlongitud2;
-    private javax.swing.JTextArea txtresultado;
+    private javax.swing.JTextArea txtresultadoresta;
+    private javax.swing.JTextArea txtresultadosuma;
     private javax.swing.JTextArea txtresultadov1;
     private javax.swing.JTextArea txtresultadov2;
     // End of variables declaration//GEN-END:variables
